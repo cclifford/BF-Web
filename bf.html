@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link href="style.css" rel="stylesheet">
+    <title>Interpret BF</title>
+  </head>
+  <body>
+    <div class="content">
+      <div class="header">
+	<h1>Interpret BF<h2>
+      </div>
+      <div class="main">
+	<div id="program-box">
+	  <div id='program-controls'>
+	    <div class='program-control'>
+	      <label for='run-program' style='display:none'>Click to run</label>
+	      <button name='run-program' id='run-program' onclick='bf.clickHandler()'>run</button>
+	    </div>
+	    <div class='program-control'>
+	      <label for='program-gas'>Gas</label>
+	      <input name='program-gas' id='program-gas' type='range' min='0', max='100' step='5' value='1'></input>
+	    </div>
+	  </div>
+	  <br />
+	  <label for='program-text'>Program Text</label><br />
+	  <textarea name='program-text' id='program-text' autofocus wrap='soft' spellcheck='false' cols='30' rows='10'></textarea>
+	  <br />
+	  <label for='program-input'>Input</label><br />
+	  <input name='program-input' id='program-input' type='text'></input>
+	  <br />
+	  <div id='output-box'>
+	    <pre id="program-output"></pre>
+	  </div>
+	</div>
+      </div>
+      <script type="text/javascript">
+	var bf = {};
+	var programForm = {
+	    gas: document.getElementById('program-gas'),
+	    program: document.getElementById('program-text'),
+	    input: document.getElementById('program-input'),
+	    output: document.getElementById('program-output'),
+	}
+	var Module = {
+	    onRuntimeInitialized: function() {
+		// Resulting arguments: gas, gas2, program, input
+		// gas enabled only if 'gas' is nonzero
+		// real gas value is gas * gas2 to work around
+		// limitations passing 64-bit numbers
+		bf.run = Module.cwrap('run', 'string', ['number', 'number', 'string', 'string']);
+		bf.clickHandler = function(){
+		    var gas = Math.pow(Number(programForm.gas.value), 4.8);
+		    var program = programForm.program.value;
+		    var input = programForm.input.value;
+		    programForm.output.innerText = bf.run(gas, 10, program, input);
+		}
+		
+	    }
+	}
+      </script>
+      <script async type="text/javascript" src="bf.js"></script>
+  </body>
+</html>
+
+

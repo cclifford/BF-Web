@@ -1,0 +1,58 @@
+body {
+    background-color: #DFDBE5;
+    background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%239C92AC' fill-opacity='0.62' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E");
+    font-family: sans-serif;
+    margin: 0.5em 0 0.5em 0;
+}
+.content {
+    background: white;
+    padding: 1.5em 1em 0;
+    border: 1px solid black;
+    max-width: max-content;
+    margin: 0 auto;
+    box-shadow: 5px 5px 20px #6a6969;
+    padding-bottom: 1em;
+}
+.footer {
+    margin: 1em auto;
+    font-size: 0.8rem;
+    border-top: 1px solid #8a8989;
+    max-width: max-content;
+    padding-top: 0.5em;
+}
+.content p {
+    max-width: 40em;
+    margin: 0.65em auto;
+}
+a {
+    text-decoration: none;
+}
+
+#program-controls {
+    display: flex;
+    column-gap: 2em;
+}
+
+#program-box {
+    margin: 0.65em auto;
+    max-width:100%;
+}
+
+#program-text {
+    resize: none;
+}
+
+#program-input {
+}
+
+#output-box {
+    margin-top: 1em;
+    border: 1px solid black;
+    min-height: 1.5em;
+    width: 100%;
+    background: lightgrey;
+}
+
+pre {
+    margin: 0.5em;
+}
